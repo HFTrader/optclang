@@ -1,0 +1,14 @@
+# Basic optimization configuration
+optimization_passes:
+  - mem2reg
+  - instcombine
+  - simplifycfg
+  - dce
+
+compiler_flags:
+  - "-std=c++17"
+  - "-Wall"
+  - "-Wextra"
+
+linker_flags:
+  - "-lm"

@@ -1,0 +1,15 @@
+# O3 with some custom modifications
+base_optimization: "3"
+incremental_changes:
+  - "-loop-vectorize"     # Remove vectorization
+  - "+instcombine"        # Add additional instcombine (should be no-op since it's already in O3)
+  - "+functionattrs"      # Add function attributes (should be no-op)
+  - "+tailcallelim"       # Add tail call elimination (should be no-op)
+
+compiler_flags:
+  - "-std=c++20"
+  - "-Wall"
+  - "-O3"  # This will be applied at compile time
+
+linker_flags:
+  - "-lm"

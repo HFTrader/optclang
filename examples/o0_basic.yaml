@@ -1,0 +1,10 @@
+# Start with O0 (no optimization) and add a few basic ones
+base_optimization: "0"
+incremental_changes: "+mem2reg,+instcombine,+simplifycfg"  # String format
+
+compiler_flags:
+  - "-std=c++20"
+  - "-Wall"
+
+linker_flags:
+  - "-lm"
