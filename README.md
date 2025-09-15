@@ -4,6 +4,7 @@ A Python 3 tool for compiling C++ files with custom LLVM optimization passes.
 
 ## Features
 
+- **Drop-In Replacement**: Use as a transparent replacement for clang++ or g++ in existing build systems
 - **Incremental Configuration**: Start with standard optimization levels (O0, O1, O2, O3, Os) and make targeted modifications
 - **Legacy Configuration**: Full control with explicit optimization pass lists
 - **Pass Discovery**: Comprehensive tools to explore and understand LLVM optimization passes
@@ -13,6 +14,21 @@ A Python 3 tool for compiling C++ files with custom LLVM optimization passes.
 
 ## Quick Start
 
+### Drop-In Replacement Mode
+```bash
+# Use as direct replacement for clang++
+./optclang_dropin.py source.cpp -o output -O2
+
+# Create symlinks for transparent replacement
+ln -sf /path/to/optclang_dropin.py /usr/local/bin/clang++
+export CXX=/usr/local/bin/clang++
+make  # Works with any build system
+
+# Use with custom configuration
+OPTCLANG_CONFIG=my_config.yaml clang++ source.cpp -o output
+```
+
+### Standalone Mode
 ```bash
 # Install dependencies
 ./setup.sh
@@ -59,6 +75,28 @@ PYTHONPATH=src python3 -m pytest tests/ -v
 ```
 
 ## Usage
+
+### Drop-In Replacement Mode
+
+OptClang can transparently replace `clang++` or `g++` in existing build systems:
+
+```bash
+# Direct usage as compiler replacement
+./optclang_dropin.py source.cpp -o output -O2 -std=c++17
+
+# Create symbolic links for system-wide usage
+sudo ln -sf /path/to/optclang_dropin.py /usr/local/bin/clang++
+export CXX=clang++
+
+# Use with make, cmake, or any build system
+make clean && make
+
+# Configure with environment variables
+OPTCLANG_CONFIG=examples/o3_custom.yaml make
+OPTCLANG_VERBOSE=1 make  # Enable verbose output
+```
+
+For detailed drop-in usage instructions, see [docs/dropin-replacement-guide.md](docs/dropin-replacement-guide.md).
 
 ### Command Line
 

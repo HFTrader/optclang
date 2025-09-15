@@ -5,6 +5,7 @@ Main entry point for the OptClang tool.
 
 import argparse
 import sys
+import os
 from pathlib import Path
 
 # Handle both direct execution and module import

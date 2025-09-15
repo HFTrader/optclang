@@ -15,6 +15,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Drop-In Replacement Mode**: Complete drop-in replacement for clang++/g++ in build systems
+  - New `optclang_dropin.py` script for transparent compiler replacement
+  - Supports standard compiler arguments (-O, -std, -I, -L, -l, -D, -W, -g, etc.)
+  - Environment variable configuration (OPTCLANG_CONFIG, OPTCLANG_CXX, OPTCLANG_VERBOSE)
+  - Automatic configuration file discovery (optclang.yaml, .optclang.yaml)
+  - Symlink support for system-wide deployment
+  - Integration with make, cmake, and other build systems
+- **Comprehensive Documentation**: 
+  - New drop-in replacement guide (`docs/dropin-replacement-guide.md`)
+  - Updated README with drop-in usage examples
+  - Build system integration examples
+- **Enhanced Testing**: 
+  - New test suite for drop-in functionality (`test_dropin.py`)
+  - Integration tests for real compilation scenarios
+  - Argument parsing validation tests
 - **Output Directory Support**: New `--output-dir` option for flexible output management
   - Automatically uses input filename stem when placing files in directory
   - Creates output directory if it doesn't exist
@@ -26,7 +41,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Maintains backward compatibility with older LLVM versions
 
 ### Improved
-- **Test Coverage**: Added comprehensive tests for output directory functionality
+- **Architecture**: Clean separation between main CLI and drop-in functionality
+- **Test Coverage**: Expanded from 11 to 18 tests covering all major functionality
 - **Documentation**: Enhanced README with detailed output options examples
 - **Error Handling**: Better validation for mutually exclusive output options
 
